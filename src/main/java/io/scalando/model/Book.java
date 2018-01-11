@@ -32,6 +32,13 @@ public class Book {
     		)
     private Set<Author> authors = new HashSet<>();
 
+    public Book(String title, String isbn, String publisher) {
+		this.title = title;
+		this.isbn = isbn;
+		this.publisher = publisher;
+	}
+    
+    
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -56,6 +63,8 @@ public class Book {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
+	
      
     
     

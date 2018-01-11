@@ -1,4 +1,4 @@
-package repository;
+package io.scalando.repository;
 
 import org.springframework.data.repository.CrudRepository;
 

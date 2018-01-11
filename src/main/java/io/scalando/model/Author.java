@@ -3,6 +3,7 @@ package io.scalando.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,9 +21,23 @@ public class Author {
 	private String firstName;
 	private String lastName;
 	
-	@ManyToMany(mappedBy="authors")
+	@ManyToMany(mappedBy="authors", cascade=CascadeType.ALL)
 	private Set<Book> books = new HashSet<>();
 
+	public Author(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	
+	public boolean addBook(Book bookToAdd) {
+		for (Book book: books){
+			if (bookToAdd.equals(book)) return false;
+		}
+		this.books.add(bookToAdd);
+		return true;
+	}
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -47,6 +62,8 @@ public class Author {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
+	
 	
 	
 	
